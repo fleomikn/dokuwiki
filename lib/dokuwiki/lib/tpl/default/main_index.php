@@ -130,7 +130,6 @@ $page_inline = get_input("inline_page");
 
   <?php/* tpl_license(false);*/?>
 
-</div>
 <?php /*old includehook @include(dirname(__FILE__).'/footer.html')*/ ?>
 
 <div class="no"><?php /* provide DokuWiki housekeeping, required in all templates */ tpl_indexerWebBug()?></div>

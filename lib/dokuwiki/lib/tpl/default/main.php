@@ -22,7 +22,7 @@ $page_inline = get_input("inline_page");
 if (empty($sidebar_inline)) {
 ob_start();
 include(dirname(__FILE__).'/main_index.php');
-$content = '<div>'.ob_get_clean();
+$content = ob_get_clean();
 }
 
 if (empty($page_inline)) {

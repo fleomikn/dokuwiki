@@ -5,3 +5,7 @@ div.dokuwiki input {
 div.dokuwiki .header {
     margin-bottom: 10px;
 }
+
+#sidebartop {
+	position: relative !important;
+}

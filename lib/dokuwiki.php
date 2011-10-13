@@ -34,13 +34,13 @@ function current_dokuwiki_entity($create = true) {
 	}
 }
 
-function elggdoku_recurse_copy($src,$dst) {
+function dokuwiki_recurse_copy($src,$dst) {
 	$dir = opendir($src);
 	@mkdir($dst);
 	while(false !== ( $file = readdir($dir)) ) {
 	if (( $file != '.' ) && ( $file != '..' )) {
 		if ( is_dir($src . '/' . $file) ) {
-		elggdoku_recurse_copy($src . '/' . $file,$dst . '/' . $file);
+		dokuwiki_recurse_copy($src . '/' . $file,$dst . '/' . $file);
 		}
 		else {
 		copy($src . '/' . $file,$dst . '/' . $file);
@@ -50,12 +50,12 @@ function elggdoku_recurse_copy($src,$dst) {
 	closedir($dir);
 } 
 
-function elggdokuwiki_create_datafolder($path) {
+function dokuwiki_create_datafolder($path) {
 	if (is_dir($path)) // if it exists must be already created
 		return;
 	mkdir($path, 0700, true);
 	$orig = elgg_get_plugins_path().'dokuwiki/lib/dokuwiki/data';
-	elggdoku_recurse_copy($orig, $path);
+	dokuwiki_recurse_copy($orig, $path);
 	
 }
 	

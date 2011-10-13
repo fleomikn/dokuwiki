@@ -16,8 +16,8 @@ function dokuwiki_init(){
 	elgg_register_library('elgg:dokuwiki', elgg_get_plugins_path().'dokuwiki/lib/dokuwiki.php');
 	
 	elgg_register_entity_type('object','dokuwiki');
-	elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'elggdokuwiki_icon_hook');
-	elgg_register_entity_url_handler('object', 'dokuwiki', 'elggdokuwiki_url');
+	elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'dokuwiki_icon_hook');
+	elgg_register_entity_url_handler('object', 'dokuwiki', 'dokuwiki_url');
 
 	// add block link to
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'dokuwiki_owner_block_menu');
@@ -102,7 +102,7 @@ function dokuwiki_init(){
 		define('DOKU_MEDIA', elgg_get_site_url().'mod/dokuwiki/lib/dokuwiki/');
 		define('DOKU_CONF', $dokuwiki_path."conf/");
 
-		elggdokuwiki_create_datafolder($data_path);
+		dokuwiki_create_datafolder($data_path);
 		define('DOKU_ELGGDATA',$data_path);
 		if (empty($page) || (count($page)==1 && $page[0] == 'acl')) {
 			$page = array('doku.php');
@@ -153,7 +153,7 @@ function dokuwiki_init(){
 		return $return;
 	}
 
-	function elggdokuwiki_icon_hook($hook, $entity_type, $returnvalue, $params) {
+	function dokuwiki_icon_hook($hook, $entity_type, $returnvalue, $params) {
 		if ($hook == 'entity:icon:url' && $params['entity']->getSubtype() == 'dokuwiki') {
 			$owner = get_entity($params['entity']->container_guid);
 			if ($owner)
@@ -162,7 +162,7 @@ function dokuwiki_init(){
 		return $returnvalue;
 	}
 
-	function elggdokuwiki_url($entity) {
+	function dokuwiki_url($entity) {
 		return elgg_get_site_url() . "dokuwiki/".$entity->container_guid;
 	}
 

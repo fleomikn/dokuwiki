@@ -38,9 +38,6 @@ if (empty($sidebar_inline) && empty($page_inline)) {
 	echo page_draw("dokuwiki",$body);
 }
 else {
-	
-	echo elgg_view("dokuwiki/metatags");
-
 	$all_link = elgg_get_site_url().'dokuwiki/'.elgg_get_page_owner_guid();
 	$all_text = elgg_echo('link:view:all');
 	$all_link = "<a href=\"$all_link\">$all_text</a>";
@@ -50,7 +47,6 @@ else {
 		'content' => $content . $sidebar,
 		'all_link' => $all_link,
 	));
-	
 }
 
 

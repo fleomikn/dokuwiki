@@ -1,5 +1,5 @@
 <?php
-if (get_context() == "dokuwiki") {
+if (elgg_get_context() == "dokuwiki") {
 	tpl_metaheaders();
 }
 ?>

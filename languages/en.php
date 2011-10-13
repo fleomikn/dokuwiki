@@ -18,6 +18,7 @@
 		"dokuwiki:dokuwiki"=>'Wiki',
 		"dokuwiki:group"=>'Group wiki',
 		"dokuwiki:userwiki"=>'My Wiki',
+		"dokuwiki:sidebar" => 'Wiki navigation',
 		"groups:enabledokuwiki"=>'Enable group wiki',
 		"groups:enabledokuwiki_frontpage"=>'Show main wiki page in the group front page (only if wiki is enabled)',
 		"groups:enabledokuwiki_frontsidebar"=>'Show wiki sidebar in the group front page (only if wiki is enabled)',

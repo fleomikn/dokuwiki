@@ -8,4 +8,5 @@ div.dokuwiki .header {
 
 #sidebartop {
 	position: relative !important;
+	display: none;
 }

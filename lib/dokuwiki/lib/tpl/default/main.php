@@ -35,7 +35,9 @@ $sidebar = ob_get_clean();
 
 if (empty($sidebar_inline) && empty($page_inline)) {
 	$title = sprintf(elgg_echo('dokuwiki:wikifrom'), elgg_get_page_owner_entity()->name);
-	
+
+	$sidebar = elgg_view_module('aside', elgg_echo('dokuwiki:sidebar'), $sidebar);
+
 	$body = elgg_view_layout('content', array(
 		'filter' => '',
 		'content' => $content,
@@ -51,7 +53,7 @@ else {
 	$all_link = "<a href=\"$all_link\">$all_text</a>";
 
 	echo elgg_view('groups/profile/module', array(
-		'title' => elgg_echo('dokuwiki:group'),
+		'title' => $content ? elgg_echo('dokuwiki:group') : elgg_echo('dokuwiki:sidebar'),
 		'content' => $content . $sidebar,
 		'all_link' => $all_link,
 	));

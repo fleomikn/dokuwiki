@@ -73,8 +73,7 @@ function dokuwiki_init(){
 			$entity_guid = $page[0];
 			$ent = get_entity($entity_guid);
 			
-			elgg_push_breadcrumb($ent->name, $ent->getURL());
-			elgg_push_breadcrumb(elgg_echo('wiki'));
+			elgg_push_breadcrumb(sprintf(elgg_echo('dokuwiki:wikifrom'),$ent->name));
 			
 			if (($ent && $ent instanceof ElggGroup) && $ent->dokuwiki_enable !== 'yes') {
 				// wiki not activated for this group. bail out.

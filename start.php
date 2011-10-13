@@ -157,7 +157,7 @@ function dokuwiki_init(){
 	}
 
 	function elggdokuwiki_url($entity) {
-		return elgg_get_url_site() . "dokuwiki/".$entity->container_guid;
+		return elgg_get_site_url() . "dokuwiki/".$entity->container_guid;
 	}
 
 ?>

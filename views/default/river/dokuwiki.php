@@ -4,7 +4,7 @@
 	$wiki = get_entity($vars['item']->object_guid);
 	$parts = explode("/", $vars['item']->action_type);
 	$id = $wiki->container_guid;
-	$namespace = "<a href='".$vars['url']."pg/dokuwiki/".$id."?id=".$parts[2]."'>".$parts[2]."</a>";
+	$namespace = "<a href='".$wiki->getURL()."?id=".$parts[2]."'>".$parts[2]."</a>";
 	if ($wiki_owner = get_entity($wiki->container_guid))
 		$wikifrom = sprintf(elgg_echo("dokuwiki:wikifrom"), $wiki_owner->name);
 	else

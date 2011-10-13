@@ -38,12 +38,19 @@ if (empty($sidebar_inline) && empty($page_inline)) {
 	echo page_draw("dokuwiki",$body);
 }
 else {
-	echo "<h2>".elgg_echo("dokuwiki:groupwiki")."</h2>";
-	echo "<div class='forum_latest'>";
+	
 	echo elgg_view("dokuwiki/metatags");
-	echo $content;
-	echo $sidebar;
-	echo "</div>";
+
+	$all_link = elgg_get_site_url().'dokuwiki/'.elgg_get_page_owner_guid();
+	$all_text = elgg_echo('link:view:all');
+	$all_link = "<a href=\"$all_link\">$all_text</a>";
+
+	echo elgg_view('groups/profile/module', array(
+		'title' => elgg_echo('dokuwiki:group'),
+		'content' => $content . $sidebar,
+		'all_link' => $all_link,
+	));
+	
 }
 
 

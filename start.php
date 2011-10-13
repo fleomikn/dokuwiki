@@ -59,7 +59,10 @@ function dokuwiki_init(){
 			include(elgg_get_plugins_path().'dokuwiki/index.php');
 			return;
 		}
+		
 		elgg_set_context("dokuwiki");
+		elgg_push_breadcrumb(elgg_echo('dokuwiki'), 'dokuwiki/all');
+		
 		$dokuwiki_path = elgg_get_plugins_path().'dokuwiki/lib/dokuwiki/';
 		$doku = current_dokuwiki_entity();
 		if (!$doku) // can fail if there is no user and wiki doesnt exist
@@ -69,6 +72,10 @@ function dokuwiki_init(){
 		if (is_numeric($page[0])) {
 			$entity_guid = $page[0];
 			$ent = get_entity($entity_guid);
+			
+			elgg_push_breadcrumb($ent->name, $ent->getURL());
+			elgg_push_breadcrumb(elgg_echo('wiki'));
+			
 			if (($ent && $ent instanceof ElggGroup) && $ent->dokuwiki_enable !== 'yes') {
 				// wiki not activated for this group. bail out.
 				forward();

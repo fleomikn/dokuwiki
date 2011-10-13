@@ -9,20 +9,20 @@
          * @link http://lorea.cc
          */
 
-register_elgg_event_handler('init','system','dokuwiki_init');
+elgg_register_event_handler('init','system','dokuwiki_init');
 
 function dokuwiki_init(){
 	
 	elgg_register_library('elgg:dokuwiki', elgg_get_plugins_path().'dokuwiki/lib/dokuwiki.php');
 	
-	register_entity_type('object','dokuwiki');
-	register_plugin_hook('entity:icon:url', 'object', 'elggdokuwiki_icon_hook');
-	register_entity_url_handler('elggdokuwiki_url','object', 'dokuwiki');
+	elgg_register_entity_type('object','dokuwiki');
+	elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'elggdokuwiki_icon_hook');
+	elgg_register_entity_url_handler('elggdokuwiki_url','object', 'dokuwiki');
 
 	// add block link to
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'dokuwiki_owner_block_menu');
 
-	register_page_handler('dokuwiki','dokuwiki_page_handler');
+	elgg_register_page_handler('dokuwiki','dokuwiki_page_handler');
 	
 	add_group_tool_option('dokuwiki',elgg_echo('groups:enabledokuwiki'),false);
 	add_group_tool_option('dokuwiki_frontsidebar',elgg_echo('groups:enabledokuwiki_frontsidebar'),false);
@@ -38,7 +38,7 @@ function dokuwiki_init(){
 	$item = new ElggMenuItem('wiki', elgg_echo('dokuwiki:title'), 'dokuwiki/all');
 	elgg_register_menu_item('site', $item);
 	
-	elgg_extend_view("metatags", "dokuwiki/metatags");
+	elgg_extend_view("page/elements/head", "dokuwiki/metatags");
 }
 
 	/**
@@ -59,7 +59,7 @@ function dokuwiki_init(){
 			include(elgg_get_plugins_path().'dokuwiki/index.php');
 			return;
 		}
-		set_context("dokuwiki");
+		elgg_set_context("dokuwiki");
 		$dokuwiki_path = elgg_get_plugins_path().'dokuwiki/lib/dokuwiki/';
 		$doku = current_dokuwiki_entity();
 		if (!$doku) // can fail if there is no user and wiki doesnt exist
@@ -74,7 +74,7 @@ function dokuwiki_init(){
 				forward();
 			}
 			if ($ent && (/*$ent instanceof ElggUser ||*/ $ent instanceof ElggGroup)) {
-				set_page_owner($entity_guid);
+				elgg_set_page_owner_guid($entity_guid);
 				$data_path = elgg_get_data_path().'wikis/'.$entity_guid;
 			} else {
 				// can't see the group
@@ -119,8 +119,8 @@ function dokuwiki_init(){
 		if (empty($page) || (count($page)==1 && !$page[0])) {
 			$page = array('doku.php');
 		}
-		$_SERVER['PHP_AUTH_USER'] = get_loggedin_user()->username;
-		$_SERVER['PHP_AUTH_PW'] = get_loggedin_user()->password;
+		$_SERVER['PHP_AUTH_USER'] = elgg_get_logged_in_user_entity()->username;
+		$_SERVER['PHP_AUTH_PW'] = elgg_get_logged_in_user_entity()->password;
 		if (count($page) == 1) {
 			$doku_body = elgg_view('dokuwiki/index',array('page'=>$page[0]));
 			echo $doku_body;

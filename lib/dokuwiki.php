@@ -1,8 +1,8 @@
 <?php
 
 function current_dokuwiki_entity($create = true) {
-	$page_owner = page_owner();
-	$user = get_loggedin_user();
+	$page_owner = elgg_get_page_owner_guid();
+	$user = elgg_get_logged_in_user_entity();
 	//error_log($page_owner->guid);
 	//error_log($user->guid);
 	if (!$page_owner)

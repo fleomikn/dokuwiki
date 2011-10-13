@@ -35,7 +35,7 @@ $sidebar = ob_get_clean();
 
 if (empty($sidebar_inline) && empty($page_inline)) {
 	$body = elgg_view_layout('two_column_left_sidebar', '', $content, $sidebar);
-	echo page_draw("dokuwiki",$body);
+	echo elgg_view_page("dokuwiki", $body);
 }
 else {
 	$all_link = elgg_get_site_url().'dokuwiki/'.elgg_get_page_owner_guid();

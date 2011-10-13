@@ -4,7 +4,7 @@
 
 $catalan = array( 
 	 'dokuwiki:wiki'  =>  "Wiki" , 
-	 'dokuwiki:groupwiki'  =>  "Wiki" , 
+	 'dokuwiki:group'  =>  "Wiki del group" , 
 	 'dokuwiki:userwiki'  =>  "La meva Wiki" , 
 	 'dokuwiki'  =>  "Wikis" , 
 	 'item:object:dokuwiki'  =>  "Wikis" , 

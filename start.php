@@ -152,17 +152,16 @@
 		return;
 	}
 
-	function elggdokuwiki_pagesetup() {
-		global $CONFIG;
-		if (page_owner()) {
-			$page_owner = page_owner_entity();
-			if ($page_owner instanceof ElggGroup && $page_owner->dokuwiki_enable == 'yes')
-				$title = elgg_echo("dokuwiki:groupwiki");
-			if ($title && get_context() == "groups") {
-				add_submenu_item($title, $CONFIG->wwwroot . "pg/dokuwiki/" . page_owner());
-			}
+	/**
+	 * Add a menu item to an ownerblock
+	 */
+	function dokuwiki_owner_block_menu($hook, $type, $return, $params) {
+		if (elgg_instanceof($params['entity'], 'group') /*&& $params['entity']->dokuwiki_enable != "no"*/) {
+			$url = "dokuwiki/group/{$params['entity']->guid}/all";
+			$item = new ElggMenuItem('dokuwiki', elgg_echo('dokuwiki:group'), $url);
+			$return[] = $item;
 		}
-
+		return $return;
 	}
 
 	function elggdokuwiki_icon_hook($hook, $entity_type, $returnvalue, $params) {
@@ -185,7 +184,9 @@
 			register_entity_type('object','dokuwiki');
 			register_plugin_hook('entity:icon:url', 'object', 'elggdokuwiki_icon_hook');
 			register_entity_url_handler('elggdokuwiki_url','object', 'dokuwiki');
-		        register_elgg_event_handler('pagesetup','system','elggdokuwiki_pagesetup');
+
+		// add blog link to
+		elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'dokuwiki_owner_block_menu');
 
 			register_page_handler('dokuwiki','elggdokuwiki_page_handler');
 	                add_group_tool_option('dokuwiki',elgg_echo('groups:enabledokuwiki'),false);

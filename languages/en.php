@@ -16,7 +16,7 @@
 		"dokuwiki:wikifrom"=>'%s wiki',
 		"dokuwiki:pages"=>'%s pages',
 		"dokuwiki:dokuwiki"=>'Wiki',
-		"dokuwiki:groupwiki"=>'Wiki',
+		"dokuwiki:group"=>'Group wiki',
 		"dokuwiki:userwiki"=>'My Wiki',
 		"groups:enabledokuwiki"=>'Enable group wiki',
 		"groups:enabledokuwiki_frontpage"=>'Show main wiki page in the group front page (only if wiki is enabled)',

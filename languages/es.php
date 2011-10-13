@@ -11,7 +11,7 @@
 
 	$spanish = array(
                 "dokuwiki:wiki"=>'Wiki',
-                "dokuwiki:groupwiki"=>'Wiki',
+                "dokuwiki:group"=>'Wiki del grupo',
                 "dokuwiki:userwiki"=>'Mi Wiki',
                 "dokuwiki"=>'Wikis',
                 "item:object:dokuwiki"=>'Wikis',

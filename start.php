@@ -29,7 +29,7 @@ function dokuwiki_init(){
 	add_group_tool_option('dokuwiki_frontpage',elgg_echo('groups:enabledokuwiki_frontpage'),false);
 	
 	elgg_extend_view('groups/profile/summary','dokuwiki/grouppage');
-	elgg_extend_view('groups/left_column','dokuwiki/sidebar');
+	elgg_extend_view('groups/tool_latest','dokuwiki/sidebar');
 	
 	// Extending CSS
 	elgg_extend_view('css/elgg', 'dokuwiki/css');

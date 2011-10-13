@@ -4,8 +4,6 @@ $group = elgg_get_page_owner_entity();
 $offset = (int)get_input("offset",0);
 if ($group->dokuwiki_enable  == 'yes' && $group->dokuwiki_frontpage_enable  == 'yes') {
 	
-	set_input("inline_page", true);
-	
 	$all_link = elgg_get_site_url().'dokuwiki/'.$group->guid;
 	$all_text = elgg_echo('viewall');
 	$all_link = "<a href=\"$all_link\">$all_text</a>";	
@@ -15,6 +13,8 @@ if ($group->dokuwiki_enable  == 'yes' && $group->dokuwiki_frontpage_enable  == '
 		'content' => $none,
 		'all_link' => $all_link,
 	));
+	
+	set_input("inline_page", true);
 	dokuwiki_page_handler(array($group->guid));
 }
 

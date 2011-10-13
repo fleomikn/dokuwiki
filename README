@@ -14,24 +14,13 @@ NOTES:
 - uses an 'elgg' auth module, and a special dokuwiki template.
 - dokuwiki defines the javascript $ symbol, which conflicts with elgg usage of jquery, so had to change all usage inside dokuwiki (just a few instances).
 
-INSTALLATION:
-------------------------
-- copy into the mod folder as dokuwiki
-- only for elgg <= 1.7.1: you need to modify .htaccess, adding &%{QUERY_STRING} to the pg/ rules.
-  after modifying they should look like this:
-
-RewriteRule ^pg\/([A-Za-z0-9\_\-]+)\/(.*)$ engine/handlers/pagehandler.php?handler=$1&page=$2&%{QUERY_STRING}
-RewriteRule ^pg\/([A-Za-z0-9\_\-]+)$ engine/handlers/pagehandler.php?handler=$1&%{QUERY_STRING}
-
-this change is already in elgg trunk, but 1.7.1 didn't have it yet.
-
 LICENSE:
 -----------------------
 - elgg plugin uses GPLv2. dokuwiki and mods (all under lib/dokuwiki) go with original license to original copyright holders.
 
 REPO:
 -----------------------
-You can follow code changes or submit tickets at: https://rhizomatik@bitbucket.org/rhizomatik/elgg_dokuwiki/
+You can follow code changes or submit tickets at: https://github.com/lorea/dokuwiki
 
 TODO:
 ------------------------

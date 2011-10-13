@@ -147,7 +147,7 @@ function act_dispatch(){
   $evt->advise_after();
   unset($evt);
   if ($ACT == 'save') {
-    $user = get_loggedin_user();
+    $user = elgg_get_logged_in_user_entity();
     $doku = current_dokuwiki_entity();
     $group = get_entity($doku->container_guid);
     add_to_river('river/dokuwiki', 'wiki/'.$ACT.'/'.$QUERY, $user->getGUID(), $doku->getGUID(), $group->access_id);

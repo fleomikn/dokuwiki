@@ -75,7 +75,7 @@ class auth_elgg extends auth_basic {
 	if (!$user)
 		return false;
 	//error_log("getUserData:".$username);
-	$page_owner = page_owner_entity();
+	$page_owner = elgg_get_page_owner_entity();
 	$grps = array();
 	if ($page_owner instanceof ElggGroup) {
 		if ($page_owner->canEdit($user->getGUID())) {

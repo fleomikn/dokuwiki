@@ -34,6 +34,10 @@ $sidebar = ob_get_clean();
 }
 
 if (empty($sidebar_inline) && empty($page_inline)) {
+
+	elgg_push_breadcrumb(elgg_echo('dokuwiki'), 'dokuwiki/all');
+	elgg_push_breadcrumb(sprintf(elgg_echo('dokuwiki:wikifrom'), elgg_get_page_owner_entity()->name));
+	
 	$title = sprintf(elgg_echo('dokuwiki:wikifrom'), elgg_get_page_owner_entity()->name);
 
 	$sidebar = elgg_view_module('aside', elgg_echo('dokuwiki:sidebar'), $sidebar);

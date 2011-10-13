@@ -34,8 +34,16 @@ $sidebar = ob_get_clean();
 }
 
 if (empty($sidebar_inline) && empty($page_inline)) {
-	$body = elgg_view_layout('two_column_left_sidebar', '', $content, $sidebar);
-	echo elgg_view_page("dokuwiki", $body);
+	$title = sprintf(elgg_echo('dokuwiki:wikifrom'), elgg_get_page_owner_entity()->name);
+	
+	$body = elgg_view_layout('content', array(
+		'filter' => '',
+		'content' => $content,
+		'title' => $title,
+		'sidebar' => $sidebar,
+	));
+	
+	echo elgg_view_page($title, $body);
 }
 else {
 	$all_link = elgg_get_site_url().'dokuwiki/'.elgg_get_page_owner_guid();

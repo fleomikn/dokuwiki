@@ -9,7 +9,37 @@
          * @link http://lorea.cc
          */
 
+register_elgg_event_handler('init','system','dokuwiki_init');
 
+function dokuwiki_init(){
+	
+	elgg_register_library('elgg:dokuwiki', elgg_get_plugins_path().'dokuwiki/lib/dokuwiki.php');
+	
+	register_entity_type('object','dokuwiki');
+	register_plugin_hook('entity:icon:url', 'object', 'elggdokuwiki_icon_hook');
+	register_entity_url_handler('elggdokuwiki_url','object', 'dokuwiki');
+
+	// add block link to
+	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'dokuwiki_owner_block_menu');
+
+	register_page_handler('dokuwiki','dokuwiki_page_handler');
+	
+	add_group_tool_option('dokuwiki',elgg_echo('groups:enabledokuwiki'),false);
+	add_group_tool_option('dokuwiki_frontsidebar',elgg_echo('groups:enabledokuwiki_frontsidebar'),false);
+	add_group_tool_option('dokuwiki_frontpage',elgg_echo('groups:enabledokuwiki_frontpage'),false);
+	
+	elgg_extend_view('groups/forum_latest','dokuwiki/grouppage');
+	elgg_extend_view('groups/left_column','dokuwiki/sidebar');
+	
+	// Extending CSS
+	elgg_extend_view('css/elgg', 'dokuwiki/css');
+	
+	// add a site navigation item
+	$item = new ElggMenuItem('wiki', elgg_echo('dokuwiki:title'), 'dokuwiki/all');
+	elgg_register_menu_item('site', $item);
+	
+	elgg_extend_view("metatags", "dokuwiki/metatags");
+}
 
 	/**
 	 * Dispatches dokuwiki pages.
@@ -129,35 +159,5 @@
 	function elggdokuwiki_url($entity) {
 		return elgg_get_url_site() . "dokuwiki/".$entity->container_guid;
 	}
-
- 	function elggdokuwiki_init(){
-		
-		elgg_register_library('elgg:dokuwiki', elgg_get_plugins_path().'dokuwiki/lib/dokuwiki.php');
-		
-			register_entity_type('object','dokuwiki');
-			register_plugin_hook('entity:icon:url', 'object', 'elggdokuwiki_icon_hook');
-			register_entity_url_handler('elggdokuwiki_url','object', 'dokuwiki');
-
-		// add blog link to
-		elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'dokuwiki_owner_block_menu');
-
-			register_page_handler('dokuwiki','dokuwiki_page_handler');
-	                add_group_tool_option('dokuwiki',elgg_echo('groups:enabledokuwiki'),false);
-	                add_group_tool_option('dokuwiki_frontsidebar',elgg_echo('groups:enabledokuwiki_frontsidebar'),false);
-	                add_group_tool_option('dokuwiki_frontpage',elgg_echo('groups:enabledokuwiki_frontpage'),false);
-			elgg_extend_view('groups/forum_latest','dokuwiki/grouppage');
-			elgg_extend_view('groups/left_column','dokuwiki/sidebar');
-		
-		// Extending CSS
-		elgg_extend_view('css/elgg', 'dokuwiki/css');
-		
-		// add a site navigation item
-		$item = new ElggMenuItem('wiki', elgg_echo('dokuwiki:title'), 'dokuwiki/all');
-		elgg_register_menu_item('site', $item);
-		
-                        elgg_extend_view("metatags", "dokuwiki/metatags");
-	}
-
-register_elgg_event_handler('init','system','elggdokuwiki_init');
 
 ?>

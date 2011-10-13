@@ -16,7 +16,7 @@ NOTES:
 
 LICENSE:
 -----------------------
-- elgg plugin uses GPLv2. dokuwiki and mods (all under lib/dokuwiki) go with original license to original copyright holders.
+- elgg plugin uses GPLv2. dokuwiki and mods (all under vendors/dokuwiki) go with original license to original copyright holders.
 
 REPO:
 -----------------------

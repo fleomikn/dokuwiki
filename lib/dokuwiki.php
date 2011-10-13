@@ -54,7 +54,7 @@ function dokuwiki_create_datafolder($path) {
 	if (is_dir($path)) // if it exists must be already created
 		return;
 	mkdir($path, 0700, true);
-	$orig = elgg_get_plugins_path().'dokuwiki/lib/dokuwiki/data';
+	$orig = elgg_get_plugins_path().'dokuwiki/vendors/dokuwiki/data';
 	dokuwiki_recurse_copy($orig, $path);
 	
 }

@@ -62,7 +62,7 @@ function dokuwiki_init(){
 		
 		elgg_set_context("dokuwiki");
 
-		$dokuwiki_path = elgg_get_plugins_path().'dokuwiki/lib/dokuwiki/';
+		$dokuwiki_path = elgg_get_plugins_path().'dokuwiki/vendors/dokuwiki/';
 		$doku = current_dokuwiki_entity();
 		if (!$doku) // can fail if there is no user and wiki doesnt exist
 			forward();
@@ -96,7 +96,7 @@ function dokuwiki_init(){
 			define('DOKU_URL', elgg_get_site_url().'dokuwiki/');
 		}
 		define('DOKU_INC', $dokuwiki_path);
-		define('DOKU_MEDIA', elgg_get_site_url().'mod/dokuwiki/lib/dokuwiki/');
+		define('DOKU_MEDIA', elgg_get_site_url().'mod/dokuwiki/vendors/dokuwiki/');
 		define('DOKU_CONF', $dokuwiki_path."conf/");
 
 		dokuwiki_create_datafolder($data_path);

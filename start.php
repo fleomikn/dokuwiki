@@ -17,7 +17,7 @@ function dokuwiki_init(){
 	
 	elgg_register_entity_type('object','dokuwiki');
 	elgg_register_plugin_hook_handler('entity:icon:url', 'object', 'elggdokuwiki_icon_hook');
-	elgg_register_entity_url_handler('elggdokuwiki_url','object', 'dokuwiki');
+	elgg_register_entity_url_handler('object', 'dokuwiki', 'elggdokuwiki_url');
 
 	// add block link to
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'dokuwiki_owner_block_menu');
@@ -55,7 +55,7 @@ function dokuwiki_init(){
 		elgg_load_library('elgg:dokuwiki');
 		
 		if ($page[0] === "all") {
-			set_context("search");
+			elgg_set_context("search");
 			include(elgg_get_plugins_path().'dokuwiki/index.php');
 			return;
 		}

@@ -142,7 +142,7 @@ function dokuwiki_init(){
 	 * Add a menu item to an ownerblock
 	 */
 	function dokuwiki_owner_block_menu($hook, $type, $return, $params) {
-		if (elgg_instanceof($params['entity'], 'group') && $params['entity']->dokuwiki_enable != "no") {
+		if (elgg_instanceof($params['entity'], 'group') && $params['entity']->dokuwiki_enable == "yes") {
 			$url = "dokuwiki/{$params['entity']->guid}/";
 			$item = new ElggMenuItem('dokuwiki', elgg_echo('dokuwiki:group'), $url);
 			$return[] = $item;
